@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import traceback
 from datetime import datetime, timezone
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from opentelemetry import trace
 
@@ -14,6 +14,17 @@ if TYPE_CHECKING:
 
 
 REDACTED_EXCEPTION_MESSAGE = "exception details redacted"
+
+
+def participant_attributes(participant: Any) -> dict[str, Any]:
+    """Span attributes identifying a room participant (identity is tagged ``lk.pii``)."""
+    from livekit import rtc
+
+    return {
+        trace_types.ATTR_PARTICIPANT_ID: participant.sid,
+        trace_types.ATTR_PARTICIPANT_IDENTITY: participant.identity,
+        trace_types.ATTR_PARTICIPANT_KIND: rtc.ParticipantKind.Name(participant.kind),
+    }
 
 
 def _redaction_enabled() -> bool:

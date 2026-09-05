@@ -123,6 +123,11 @@ SAFE_KEYS = frozenset(
         "lk.interruption.total_duration",
         "lk.interruption.prediction_duration",
         "lk.interruption.detection_delay",
+        # eot_wait / speech scheduling (timings and enums)
+        "lk.eou.outcome",
+        "lk.eou.wait_duration",
+        "lk.eou.rearm_count",
+        "lk.speech.queue_wait",
         # event loop blocking (timings, task name, source-location stack; no values)
         "lk.blocking.duration",
         "lk.blocking.threshold",

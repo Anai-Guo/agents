@@ -123,6 +123,15 @@ SAFE_KEYS = frozenset(
         "lk.interruption.total_duration",
         "lk.interruption.prediction_duration",
         "lk.interruption.detection_delay",
+        # event loop blocking (timings, task name, source-location stack; no values)
+        "lk.blocking.duration",
+        "lk.blocking.threshold",
+        "lk.blocking.severity",
+        "lk.blocking.task",
+        "lk.blocking.stack",
+        "lk.blocking.gc_time",
+        "lk.blocking.cpu_time",
+        "lk.blocking.suppressed",
     }
 )
 

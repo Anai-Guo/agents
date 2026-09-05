@@ -81,6 +81,13 @@ _connection_acquire_time = _meter.create_histogram(
     description="Time to acquire a connection (WebSocket only)",
 )
 
+# -- Process health --
+_event_loop_blocked = _meter.create_histogram(
+    "lk.agents.event_loop.blocked_duration",
+    unit="s",
+    description="Duration of synchronous blocks detected on an agent event loop",
+)
+
 
 def _job_attrs() -> dict[str, Any]:
     """Per-measurement job attribution.
@@ -203,3 +210,9 @@ def collect_usage(ev: AgentMetrics) -> None:
             conn_attrs = _model_attrs(ev.metadata)
             conn_attrs["connection_reused"] = str(ev.connection_reused).lower()
             _connection_acquire_time.record(ev.acquire_time, attributes=conn_attrs)
+
+
+def record_event_loop_blocked(duration: float, *, severity: str) -> None:
+    attrs = _job_attrs()
+    attrs["severity"] = severity
+    _event_loop_blocked.record(duration, attributes=attrs)

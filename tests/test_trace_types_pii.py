@@ -123,6 +123,15 @@ SAFE_KEYS = frozenset(
         "lk.interruption.total_duration",
         "lk.interruption.prediction_duration",
         "lk.interruption.detection_delay",
+        # rpc (semconv names, ids, sizes, codes; identities and payload are tagged)
+        "rpc.system",
+        "rpc.method",
+        "lk.rpc.request_id",
+        "lk.rpc.payload_size",
+        "lk.rpc.response_size",
+        "lk.rpc.response_timeout",
+        "lk.rpc.error_code",
+        "lk.rpc.handler_registered",
         # join keys, dispatch timeline, room/track ids, lifecycle enums (no content)
         "lk.room_sid",
         "lk.dispatch_id",

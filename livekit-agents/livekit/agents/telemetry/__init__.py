@@ -1,4 +1,4 @@
-from . import http_server, loop_monitor, metrics, otel_metrics, trace_types, utils
+from . import http_server, loop_monitor, metrics, otel_metrics, rpc, trace_types, utils
 from .traces import (
     _chat_ctx_to_otel_events,
     _setup_cloud_tracer,
@@ -14,6 +14,7 @@ __all__ = [
     "trace_types",
     "http_server",
     "loop_monitor",
+    "rpc",
     "set_tracer_provider",
     "utils",
     "_setup_cloud_tracer",
